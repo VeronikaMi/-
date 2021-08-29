@@ -1,0 +1,25 @@
+@import "../../style-vars.scss";
+
+.not-found{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40vh;
+    text-align: center;
+
+    h1{
+        color: $button-main;
+        font-size: 50px;
+        margin-bottom: 20px;
+    }
+
+    button{
+        border:none;
+        cursor: pointer;
+        padding: 15px 40px;
+        background-color: $highlight;
+        color: $main-color;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+}

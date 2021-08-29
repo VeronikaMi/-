@@ -1,0 +1,20 @@
+@import "../../../../style-vars.scss";
+
+.post{
+    background: #fff;
+    cursor: pointer;
+    padding: 15px;
+    margin-bottom: 20px;
+    transition: 0.5s ease;
+    color: $main-color;
+
+    &:hover{
+        background: darken(#fff, 3%);
+    }
+
+    .title{
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+}

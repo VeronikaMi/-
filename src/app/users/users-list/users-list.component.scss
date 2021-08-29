@@ -1,0 +1,70 @@
+@import "../../../style-vars.scss";
+
+.users-container{
+    background: $light-color;
+    padding: 50px 0;
+    width: 100%;
+}
+
+.search-bar{
+    margin-bottom: 40px;
+
+    input[type=text], button{
+        border:none;
+        padding: 10px;
+        font-size: 16px;
+    }
+    
+    input[type=text]{
+        width: 50%;
+    }
+
+    button{
+        background: $highlight;
+        cursor: pointer;
+        width: 8%;
+        
+        &:hover{
+            background: darken($highlight, 10%);
+        }
+    }
+}
+
+.users-list{
+    width:90vw;
+    margin:50px auto;
+}
+
+.list{
+    background: #fff;
+
+}
+
+.title{
+    height: 10vh;
+    color: $main-color;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+    
+
+    h3{
+        width: 16vw;
+        color: #aaa;
+        font-weight: normal;
+
+        a:hover{
+            cursor: pointer;
+            color: darken(#aaa,40%);
+        }
+
+        .selected{
+            color: darken(#aaa,50%);
+        }
+    }
+}
+
+.sort-section{
+    margin-bottom: 20px;
+}

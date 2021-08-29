@@ -1,0 +1,47 @@
+@import "../../../style-vars.scss";
+
+.user-container{
+
+    margin:30px auto;
+    width:70%;
+
+    .post-link{
+        text-align: right;
+        padding-top: 10px;
+        a{
+            color: darken( $button-main, 10%);
+            &:hover{
+                color: $button-main;
+            }
+        }
+    }
+}
+
+.user-detail{
+    display: flex;
+
+    &>*{
+        width:50%;
+    }
+
+
+        h3, .data>*{
+            height: 8vh;
+            padding: 0 10px;
+            display: flex;
+            align-items: center;
+
+            &.bigger{
+                height: 16vh;
+            }
+        }
+
+        .address>*, .company>*{
+            padding-bottom:10px ;
+        }
+
+        .titles h3:nth-child(odd), .data>*:nth-child(odd){
+            background: $light-color;
+        }
+    
+}

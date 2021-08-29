@@ -1,0 +1,23 @@
+<div class="users-container">
+
+    <div class="users-list">
+        <div class="search-bar">
+            <input type="text" placeholder="Search..." [(ngModel)] = "searchString" (input) = "onFilter()">
+        </div>
+    
+        <div class="list">
+    
+            <div class="title" (click) = "onSortClick($event)">
+                <h3 *ngFor="let title of sortingOp">
+                    <a [ngClass] = "{'selected': selectedOptionName === title.optionName}"
+                    >{{ title.optionName }}</a></h3>
+            </div>
+            
+            <div class="users">
+                <app-users-list-item *ngFor="let user of users"
+                 [user]="user"
+                 (click) = "onUserClick(user.id)"></app-users-list-item>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+@import "../../../style-vars.scss";
+
+.user{
+    height: 10vh;
+    color: $main-color;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    cursor: pointer;
+    transition: 0.5s ease;
+
+    &:hover{
+        background: darken(#fff, 3%);
+    }
+
+    p{
+        width: 16vw;
+    }
+}
