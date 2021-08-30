@@ -17,6 +17,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LoadSpinnerComponent } from './shared/load-spinner/load-spinner.component';
 import { PostsListComponent } from './posts/posts-list/posts-list.component';
 import { PostsListItemComponent } from './posts/posts-list/posts-list-item/posts-list-item.component';
+import { NewPostComponent } from './posts/posts-list/new-post/new-post.component';
+import { PostDetailComponent } from './posts/post-detail/post-detail.component';
+import { CommentsListComponent } from './posts/comments-list/comments-list.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,10 @@ import { PostsListItemComponent } from './posts/posts-list/posts-list-item/posts
     PageNotFoundComponent,
     LoadSpinnerComponent,
     PostsListComponent,
-    PostsListItemComponent
+    PostsListItemComponent,
+    NewPostComponent,
+    PostDetailComponent,
+    CommentsListComponent
   ],
   imports: [
     BrowserModule,

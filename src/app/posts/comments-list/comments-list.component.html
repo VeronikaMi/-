@@ -1,0 +1,19 @@
+<div class="center">
+    <app-load-spinner *ngIf = "isLoading"></app-load-spinner>
+    <p class="no-comments" *ngIf = "comments.length === 0 && !isLoading">No comments</p>    
+</div>
+
+<div class="comments" *ngIf = "comments.length !== 0 ">
+    <div class="comment" *ngFor="let comment of comments">
+        <div class="head">
+            <img src="../../../assets/user-pic.png" alt="pattern">
+            <div class="user-info">
+                <p class="name">{{ comment.name }}</p>
+                <p class="email"> {{ comment.email }} </p>
+            </div>
+        </div>
+        <div class="body">
+            <p> {{ comment.body }} </p>
+        </div>
+    </div>
+</div>

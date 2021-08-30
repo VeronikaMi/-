@@ -1,15 +1,26 @@
+<div class="newPost" *ngIf = "newPostCreate">
+    <app-new-post (cancel) = "newPostCreate = false"></app-new-post>
+</div>
+
 <div class="posts-container">
-    <app-posts-list-item *ngFor ="let post of visiblePosts" [post] = post></app-posts-list-item>
-    <button type="button" title="New Post">+</button>
+    <app-posts-list-item *ngFor ="let post of visiblePosts" [post] = "post"></app-posts-list-item>
+    <button type="button" 
+            title="New Post"
+            (click)="onNewPost()">+</button>
 </div>
 
 <div class="navigation">
-    <button type="button" [disabled] = "currentPage === 1"
-            (click) = "onBackArrow()"><fa-icon [icon]="arrowLeft"></fa-icon></button>
+    <button type="button" 
+            [disabled] = "currentPage === 1"
+            (click) = "onBackArrow()"
+            ><fa-icon [icon]="arrowLeft"></fa-icon></button>
     <div class="pages"  (click) = "onNavigate($event)">
         <button [ngClass] = "{'activePage' : currentPage == page}"
-         *ngFor = "let page of pages"> {{ page }} </button>
+                *ngFor = "let page of pages"> {{ page }} </button>
     </div>
-    <button type="button"  [disabled] = "currentPage === pages.length"
-             (click) = "onNextArrow()"><fa-icon [icon]="arrowRight"></fa-icon></button>
+    <button type="button"  
+            [disabled] = "currentPage === pages.length"
+            (click) = "onNextArrow()"
+            ><fa-icon [icon]="arrowRight"></fa-icon></button>
 </div>
+

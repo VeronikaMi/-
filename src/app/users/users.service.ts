@@ -6,6 +6,7 @@ import { User } from "./user.model";
 @Injectable({providedIn:'root'})
 export class UsersService {
   private users:User[] = [];
+  selectedSortingOption:string = "none";
 
   sortingOptions = [
     { optionId: ["username"], optionName: "Username" },
@@ -27,10 +28,11 @@ export class UsersService {
     return this.users;
   }
 
-  getUser(id:number){
-    let index = this.users.findIndex(user => user.id === id);
-    return this.users[index];
-  }
+  // getUser(id:number){
+  //   // let index = this.users.findIndex(user => user.id === id);
+  //   // return this.users[index];
+    
+  // }
 
   sortUsersAsc(users, sortOption) {
     let sortA,sortB;

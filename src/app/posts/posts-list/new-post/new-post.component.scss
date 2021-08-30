@@ -1,0 +1,85 @@
+@import "../../../../style-vars.scss";
+
+.newPost{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form{
+    width: 60%;
+    background: #fff;
+    color: $main-color;
+    padding: 20px 30px;
+    font-size:18px;
+    
+    &>*{
+        display: block;
+        margin-bottom: 10px;
+        width: 100%;
+    }
+
+    .warning{
+        color: darkred;
+        font-size: 12px;
+    }
+
+    .ng-touched{
+        border:1px solid red;
+    }
+
+    .ng-valid{
+        border:1px solid rgb(118,118,118);
+    }
+
+    input[type=text],textarea{
+        padding: 5px;
+        font-size:18px;
+
+    }
+
+    textarea{
+        min-height: 35px;
+        max-height: 300px;
+        resize: vertical;
+    }
+
+    .btn-group{
+        text-align: right;
+
+        button{
+            margin-left: 10px;
+            width:100px;
+            height: 35px;
+            margin-top: 20px;
+            color: $main-color;
+            transition: .5s ease;
+
+            &#cancel{
+                background: none;
+                border: 1px solid $main-color;
+
+                &:hover{
+                    border: 1px solid lighten($main-color, 30%);
+                    color: lighten($main-color, 30%);
+                }
+            }
+
+            &#save{
+                background: $highlight;
+
+                &:hover{
+                    background: darken($highlight, 10%);
+                }
+
+                &:disabled{
+                    background: #eee;
+                }
+            }
+
+           
+        }
+    }
+}

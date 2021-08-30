@@ -1,0 +1,26 @@
+<div class="newPost">
+    <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+        <label for="title">Title</label>
+        <p class="warning" *ngIf = "!title.valid && title.touched">This field is required</p>
+        <input type="text" 
+                id="title" 
+                name="title" 
+                [ngModel] = "editMode? post.title :'' " 
+                #title = "ngModel"
+                required>
+
+        <label for="body">Body</label>
+        <p class="warning" *ngIf = "!body.valid && body.touched">This field is required</p>
+        <textarea name="body" 
+                    id="body"
+                    [ngModel] = "editMode? post.body :'' " 
+                    #body = "ngModel"
+                    required></textarea>
+        <div class="btn-group">
+            <button type="button" id="cancel" (click)="onCancel()">Cancel</button>
+            <button type="submit" 
+                    id="save"
+                    [disabled] = "!form.valid">Save</button>
+        </div>
+    </form>
+</div>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ActivatedRouteSnapshot, Params } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
+import { DataStorageService } from 'src/app/shared/data-storage.service';
 import { User } from '../user.model';
-import { UsersService } from '../users.service';
 
 @Component({
   selector: 'app-user-detail',
@@ -11,15 +11,20 @@ import { UsersService } from '../users.service';
 export class UserDetailComponent implements OnInit {
   id:number;
   user:User;
+  isLoading: boolean = true;
 
   constructor(private route: ActivatedRoute, 
-              private usersService: UsersService) { }
+              private dataStorageService:DataStorageService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((params:Params)=>{
       this.id = +params['id'];
     })
-    this.user = this.usersService.getUser(this.id);
+    this.dataStorageService.getUser(this.id).subscribe(user=>{
+      this.user = user;
+      console.log(user);
+      this.isLoading = false;
+    })
     console.log(this.user);
   }
 

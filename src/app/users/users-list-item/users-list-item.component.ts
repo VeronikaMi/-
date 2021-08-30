@@ -12,7 +12,6 @@ export class UsersListItemComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.user);
   }
 
 }

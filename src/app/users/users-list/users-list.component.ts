@@ -25,10 +25,12 @@ export class UsersListComponent implements OnInit {
 
   ngOnInit(): void {
     this.users = this.usersService.getUsers();
+    this.selectedOptionName = this.usersService.selectedSortingOption;
   }
 
   onSortClick(event) {
     this.selectedOptionName = event.target.innerText;
+    this.usersService.selectedSortingOption = this.selectedOptionName;
     console.log("class " +event.target.className);
 
     let indexOfSelected: number = this.usersService.sortingOptions
