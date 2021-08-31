@@ -10,6 +10,7 @@ import { Comment } from "../posts/comments-list/comments-list.component";
 export class DataStorageService {
     page: number;
     pageChanged = new Subject<number>();
+    // postsFromUser:Post[] = [];
     constructor(private http: HttpClient) { }
 
     fetchUsers() {
@@ -70,14 +71,15 @@ export class DataStorageService {
         return this.http.get<Comment[]>('https://jsonplaceholder.typicode.com/posts/' + id + '/comments');
     }
 
-    getPostsForSingleUser(userId: number) {
-        return this.fetchPosts().pipe(
-            map(posts => {
-                posts = posts.filter(post => post.userId === userId);
-                return of(posts);
-            })
-        )
-    }
+    // getPostsForSingleUser(userId: number) {
+    //     return this.fetchPosts().pipe(
+    //         map(posts => {
+    //             this.postsFromUser = posts;
+    //             posts = posts.filter(post => post.userId === userId);
+    //             return of(posts);
+    //         })
+    //     )
+    // }
 
     getPostAuthor(postId:number){
         return this.getPost(postId);

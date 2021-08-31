@@ -1,8 +1,8 @@
 <div class="loading">
     <app-load-spinner *ngIf = "isLoading"></app-load-spinner>
 </div>
-<div class="post-detail" *ngIf = "!isLoading && !!user">
-    <p class="author">Author: {{ user.username }}</p>
+<div class="post-detail" *ngIf = "!isLoading ">
+    <p class="author">Author: {{ userName }}</p>
     <app-posts-list-item  [post] = post></app-posts-list-item>
     <div class="under">
         <a [routerLink] = "['./comments']">See comments</a>

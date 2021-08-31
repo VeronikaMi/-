@@ -27,10 +27,9 @@ const routes: Routes = [
       {path:'', component:PostsListComponent},
       {path:':id', component:PostDetailComponent},
       {path:':id/comments', component:CommentsListComponent},
-
     ]
   },
-
+  
   { path: '**', component: PageNotFoundComponent }
 ];
 

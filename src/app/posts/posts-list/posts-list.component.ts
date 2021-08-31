@@ -34,6 +34,8 @@ export class PostsListComponent implements OnInit, OnDestroy {
               private scroller: ViewportScroller) { }
 
   ngOnInit(): void {
+    console.log("ng on init getting posts")
+    console.log(this.postsService.getPosts())
     this.posts = this.postsService.getPosts();
 
     this.subscription = this.postsService.postsChanged.subscribe(

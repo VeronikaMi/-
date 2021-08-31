@@ -11,33 +11,33 @@ import { PostsService } from '../posts.service';
   templateUrl: './post-detail.component.html',
   styleUrls: ['./post-detail.component.scss']
 })
-export class PostDetailComponent implements OnInit,OnDestroy {
+export class PostDetailComponent implements OnInit, OnDestroy {
   post; // error on :Post , doesn't have value when assigned
   postChanged = new EventEmitter();
-  id:number;
+  id: number;
   isLoading = true;
   editMode: boolean = false;
-  subscription:Subscription;
-  user:User;
+  subscription: Subscription;
+  userName: string ;
 
   constructor(private dataStorageService: DataStorageService,
-              private route: ActivatedRoute,
-              private postsService: PostsService,
-              private router: Router) { }
+    private route: ActivatedRoute,
+    private postsService: PostsService,
+    private router: Router) { }
 
   ngOnInit(): void {
-    this.postChanged.subscribe(()=>{
+    this.postChanged.subscribe(() => {
       this.post = this.postsService.getPost(this.id);
     });
 
     this.route.params.subscribe((params: Params) => {
       this.id = +params['id'];
-      if(this.postsService.deleted || this.postsService.useLocal){
+      if (this.postsService.deleted || this.postsService.useLocal) {
         this.post = this.postsService.getPost(this.id);
         this.isLoading = false;
       }
-      else{
-        this.subscription=this.dataStorageService.getPost(this.id).subscribe({
+      else {
+        this.subscription = this.dataStorageService.getPost(this.id).subscribe({
           next: post => {
             console.log(post);
             this.isLoading = false;
@@ -48,31 +48,44 @@ export class PostDetailComponent implements OnInit,OnDestroy {
             this.isLoading = false;
           }
         });
+
+        
       }
-      
+
+    })
+    this.dataStorageService.getPostAuthor(this.id).subscribe({
+
+      next: (post: Post) => {
+        this.dataStorageService.getUser(post.userId).subscribe(user => {
+          this.userName = user.username;
+          console.log("from post-detail get author")
+          console.log(user);
+        })
+
+      },
+
+      error: error=>{
+        console.log("from post-detail get author")
+        console.log(error)
+        this.userName = "New user";
+      }
     })
 
-    this.dataStorageService.getPostAuthor(this.id).subscribe((post:Post)=>{
-      this.dataStorageService.getUser(post.userId).subscribe(user=>{
-        this.user = user;
-      })
-     
-  })
   }
 
-  onDeletePost(id:number){
+  onDeletePost(id: number) {
     this.postsService.deletePost(id);
-    this.router.navigate(['..'], {relativeTo: this.route});
+    this.router.navigate(['..'], { relativeTo: this.route });
   }
 
-  onEditPost(id:number){
+  onEditPost(id: number) {
     this.editMode = true;
     this.postsService.editMode = true;
     this.postChanged.emit();
   }
 
-  ngOnDestroy(){
-    if(this.subscription){
+  ngOnDestroy() {
+    if (this.subscription) {
       this.subscription.unsubscribe();
     }
   }
