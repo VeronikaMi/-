@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { exhaustMap, take } from 'rxjs/operators';
+import { Post } from 'src/app/posts/posts.model';
 import { DataStorageService } from 'src/app/shared/data-storage.service';
 import { User } from '../user.model';
 
@@ -12,6 +14,8 @@ export class UserDetailComponent implements OnInit {
   id:number;
   user:User;
   isLoading: boolean = true;
+  showPosts:boolean = false;
+  postsOfUser:Post[] = [];
 
   constructor(private route: ActivatedRoute, 
               private dataStorageService:DataStorageService) { }
@@ -25,7 +29,16 @@ export class UserDetailComponent implements OnInit {
       console.log(user);
       this.isLoading = false;
     })
-    console.log(this.user);
+
+    this.dataStorageService.getPostsForSingleUser(this.id).pipe(take(1),exhaustMap(data=>{
+      console.log("exhaustMAp");
+      console.log(data);
+      return data;
+    })).subscribe(data=>{
+      console.log("subscribe after exhaust map");
+      console.log(data);
+      this.postsOfUser = data;
+    })
   }
 
 }

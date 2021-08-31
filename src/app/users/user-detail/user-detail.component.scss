@@ -19,7 +19,9 @@
         padding-top: 10px;
         a{
             color: darken( $button-main, 10%);
+            text-decoration: underline;
             &:hover{
+                cursor: pointer;
                 color: $button-main;
             }
         }
@@ -52,4 +54,9 @@
             background: $light-color;
         }
     
+}
+
+.posts-container{
+    width:60%;
+    margin: 50px auto;
 }

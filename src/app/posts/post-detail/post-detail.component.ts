@@ -2,6 +2,8 @@ import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { DataStorageService } from 'src/app/shared/data-storage.service';
+import { User } from 'src/app/users/user.model';
+import { Post } from '../posts.model';
 import { PostsService } from '../posts.service';
 
 @Component({
@@ -16,6 +18,7 @@ export class PostDetailComponent implements OnInit,OnDestroy {
   isLoading = true;
   editMode: boolean = false;
   subscription:Subscription;
+  user:User;
 
   constructor(private dataStorageService: DataStorageService,
               private route: ActivatedRoute,
@@ -41,15 +44,20 @@ export class PostDetailComponent implements OnInit,OnDestroy {
             this.post = post;
           },
           error: error => {
-            // console.log("Error : " + error);
             this.post = this.postsService.getPost(this.id);
             this.isLoading = false;
-            // console.log(this.post);
           }
         });
       }
       
     })
+
+    this.dataStorageService.getPostAuthor(this.id).subscribe((post:Post)=>{
+      this.dataStorageService.getUser(post.userId).subscribe(user=>{
+        this.user = user;
+      })
+     
+  })
   }
 
   onDeletePost(id:number){

@@ -28,9 +28,7 @@ export class UsersService {
     return this.users;
   }
 
-  // getUser(id:number){
-  //   // let index = this.users.findIndex(user => user.id === id);
-  //   // return this.users[index];
+  // getUserPosts(id:number){
     
   // }
 

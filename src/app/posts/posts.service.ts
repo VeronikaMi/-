@@ -17,8 +17,8 @@ export class PostsService{
 
     setPosts(posts){
         this.posts = posts;
-        console.log("posts");
-        console.log(this.posts);
+        // console.log("posts");
+        // console.log(this.posts);
     }
 
     setPost(post:Post){
