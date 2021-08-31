@@ -59,4 +59,9 @@
 .posts-container{
     width:60%;
     margin: 50px auto;
+
+    .no-posts{
+        font-size: 20px;
+        text-align: center;
+    }
 }

@@ -1,6 +1,5 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { DataStorageService } from 'src/app/shared/data-storage.service';
 import { Post } from '../../posts.model';
 import { PostsService } from '../../posts.service';
 
@@ -13,13 +12,10 @@ export class NewPostComponent implements OnInit{
   @Output() cancel = new EventEmitter();
   @Input()post:Post;
   editMode:boolean;
-  constructor(private postsService: PostsService,
-              private dataStorageService: DataStorageService) { }
+  constructor(private postsService: PostsService) { }
 
   ngOnInit(): void {
     this.editMode = this.postsService.editMode;
-    console.log("update from submit")
-    console.log(this.post)
   }
   
   onSubmit(form:NgForm){
@@ -33,7 +29,6 @@ export class NewPostComponent implements OnInit{
       let newPost = {userId: 11,id:lastPostId +1, title: form.value.title,body : form.value.body} ;
       console.log(newPost)
       this.postsService.addPost(newPost);
-      this.dataStorageService.postPost(newPost);
     }
     form.reset();
     this.cancel.emit();

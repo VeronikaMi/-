@@ -5,16 +5,16 @@ import { catchError, tap } from "rxjs/operators";
 import { DataStorageService } from "../shared/data-storage.service";
 import { UsersService } from "./users.service";
 
-@Injectable({providedIn:'root'})
+@Injectable({ providedIn: 'root' })
 export class UsersResolverService implements Resolve<any>{
     constructor(private dataStorageService: DataStorageService,
-                private usersService: UsersService){}
+        private usersService: UsersService) { }
 
-    resolve(route: ActivatedRouteSnapshot) :Observable<any>{
+    resolve(route: ActivatedRouteSnapshot): Observable<any> {
         return this.dataStorageService.fetchUsers().pipe(
-            tap(users => this.usersService.setUsers(users) 
+            tap(users => this.usersService.setUsers(users)
             ),
-            catchError(error=>{
+            catchError(error => {
                 console.log(error);
                 return of(error);
             })

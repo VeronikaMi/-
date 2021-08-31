@@ -46,6 +46,7 @@
     </div>
 </div>
 <div class="posts-container" *ngIf = "showPosts">
+    <p class="no-posts" *ngIf = "postsOfUser.length === 0 ">No posts</p>
     <app-posts-list-item *ngFor = "let post of postsOfUser" [post] = "post"></app-posts-list-item>
 </div>
 

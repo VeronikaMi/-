@@ -34,14 +34,13 @@ export class PostsListComponent implements OnInit, OnDestroy {
               private scroller: ViewportScroller) { }
 
   ngOnInit(): void {
-    console.log("ng on init getting posts")
-    console.log(this.postsService.getPosts())
     this.posts = this.postsService.getPosts();
+    this.visiblePosts = this.posts.slice(0,10);
+    this.currentPage = 1;
 
     this.subscription = this.postsService.postsChanged.subscribe(
       posts=>{
         this.posts = posts;
-        console.log("Length: " + this.posts.length);
         this.pagesNumber = this.posts.length % this.postsPerPage === 0 ? this.posts.length / this.postsPerPage : Math.floor( this.posts.length / this.postsPerPage) + 1;
         if(this.pagesNumber > this.pages.length){
           this.pages.push(this.pagesNumber);
@@ -54,9 +53,6 @@ export class PostsListComponent implements OnInit, OnDestroy {
     for(let i = 1; i<=this.pagesNumber; i++){
       this.pages.push(i);
     }
-
-    this.visiblePosts = this.posts.slice(0,10);
-    this.currentPage = 1;
 
   }
 

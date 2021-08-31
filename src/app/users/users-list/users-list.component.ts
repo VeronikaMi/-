@@ -31,7 +31,6 @@ export class UsersListComponent implements OnInit {
   onSortClick(event) {
     this.selectedOptionName = event.target.innerText;
     this.usersService.selectedSortingOption = this.selectedOptionName;
-    console.log("class " +event.target.className);
 
     let indexOfSelected: number = this.usersService.sortingOptions
       .findIndex(option => option.optionName === this.selectedOptionName);
@@ -55,12 +54,10 @@ export class UsersListComponent implements OnInit {
     this.users = this.usersService.getUsers();
     let preparedString = this.searchString.toLowerCase().trim();
     let words: string[] = preparedString.split(' ');
-    console.log(words);
 
     words.forEach(word =>{
       this.users = this.users.filter(user => {
         if(user.name.toLowerCase().includes(word) || user.email.toLowerCase().includes(word) || user.phone.toLowerCase().includes(word)){
-          console.log(user.username.toLowerCase());
           return true;
         }
         else{

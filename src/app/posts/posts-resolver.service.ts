@@ -13,15 +13,12 @@ export class PostsResolverService implements Resolve<any>{
 
     resolve(route: ActivatedRouteSnapshot){
         if(this.posts.length === 0){
-            console.log("resolver retruns request")
             return this.dataStorageService.fetchPosts()
             .pipe(tap(posts=>{
                 this.postsService.setPosts(posts);
             }));
         }
         else{
-            console.log("resolver retruns posts from service")
-            console.log(this.posts)
             this.postsService.setPosts(this.posts);
         }
         

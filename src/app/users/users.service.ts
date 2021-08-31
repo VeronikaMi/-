@@ -28,10 +28,6 @@ export class UsersService {
     return this.users;
   }
 
-  // getUserPosts(id:number){
-    
-  // }
-
   sortUsersAsc(users, sortOption) {
     let sortA,sortB;
 
@@ -45,7 +41,6 @@ export class UsersService {
         sortB = b[sortOption[0]][sortOption[1]].toLowerCase();
       }
      
-
       if (sortA < sortB) {
         return -1;
       }

@@ -27,15 +27,16 @@ export class UserDetailComponent implements OnInit {
     this.route.params.subscribe((params: Params) => {
       this.id = +params['id'];
     })
+
     this.dataStorageService.getUser(this.id).subscribe(user => {
       this.user = user;
-      console.log(user);
       this.isLoading = false;
     })
 
     if (this.postsService.getPosts().length === 0){
       this.dataStorageService.fetchPosts()
       .subscribe(posts => {
+        // posts get saved after fetching them for the first time, so no need to rerun the command
         this.postsService.setPosts(posts);
         this.postsOfUser = posts.filter(post => post.userId === this.id);
       })
@@ -43,10 +44,6 @@ export class UserDetailComponent implements OnInit {
       this.postsOfUser = this.postsService.getPosts().filter(post => post.userId === this.id);
     }
     
-
-
   }
-
-
 
 }
